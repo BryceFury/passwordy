@@ -11,8 +11,9 @@ Download the repo.
 ## Usage
 
 Run the script:
-    ``` python passwordy.py```
-    
+
+    python passwordy.py
+
 Select your options (multiple choices can be made at one time).
 
 Click the Generate button and generate your passwords!
