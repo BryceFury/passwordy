@@ -6,6 +6,10 @@ A tool to generate passwords with a QT GUI.
 
 ## Installation
 
+Get PyQT5
+
+    pip install pyqt5
+
 Download the repo.
 
 ## Usage
