@@ -2,7 +2,7 @@
 
 A tool to generate passwords with a QT GUI.
 
-![](https://gitlab.com/PyQT/passwordy/raw/master/passwordy_screenshot.png)
+![](https://raw.githubusercontent.com/BryceFury/passwordy/master/assets/screenshots/passwordy_screenshot.png)
 
 ## Installation
 
