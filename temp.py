@@ -2,6 +2,8 @@ import random
 import string
 import sys
 
+from stylesheet import set_stylesheet
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -12,87 +14,30 @@ class Passwordy(QtWidgets.QMainWindow):
     def __init__(self, parent = None):
         QtWidgets.QMainWindow.__init__(self,parent)
  
-        # Default filename
-
+        # Call function to create UI
         self.create_ui()
-
  
     def create_ui(self):
- 
-        self.setObjectName('self')
-        self.resize(500, 61)
-        self.setStyleSheet('#centralWidget {\n'
-                           'background: #232532;\n'
-                           'border: None;\n'
-                           '}\n'
-                           '\n'
-                           '#menu_frame {\n'
-                           'border: None;\n'
-                           '}\n'
-                           '\n'
-                           '#menu_button {\n'
-                           'text-align:center;\n'
-                           'font: 18px;\n'
-                           'color: #FFFFFF;\n'
-                           'background-color: #232532;\n'
-                           'border-style: solid;\n'
-                           'border-width: 0px;\n'
-                           'max-width:40px;\n'
-                           'max-height:40px;\n'
-                           'min-width:40px;\n'
-                           'min-height:40px;\n'
-                           '}\n'
-                           '\n'
-                           '#menu_frame QPushButton:hover {\n'
-                           'color: #59F3D7;\n'
-                           '}\n'
-                           '\n'
-                           '#generate_frame {\n'
-                           'border: None;\n'
-                           '}\n'
-                           '\n'
-                           '#generate_button {\n'
-                           'text-align:center;\n'
-                           'font: 18px;\n'
-                           'color: #FFFFFF;\n'
-                           'border-style: solid;\n'
-                           'border-width: 0px;\n'
-                           'border-radius: 25px;\n'
-                           'max-width:100px;\n'
-                           'max-height:50px;\n'
-                           'min-width:100px;\n'
-                           'min-height:50px;\n'
-                           '}\n'
-                           '\n'
-                           '#generate_button:hover {\n'
-                           'color: #59F3D7;\n'
-                           '}\n'
-                           '\n'
-                           '#spacer_frame {\n'
-                           'border: None;\n'
-                           'max-width:250px;\n'
-                           'max-height:50px;\n'
-                           'min-width:225px;\n'
-                           'min-height:50px;\n'
-                           '}\n'
-                           '\n'
-                           'QLabel {\n'
-                           'color: #FFFFFF;\n'
-                           'font: 18px;\n'
-                           'max-height:20px;\n'
-                           'min-height:20px;\n'
-                           '}\n'
-                           '\n'
-                           '\n'
-                           '')
 
+        # Set window size
+        self.resize(500, 61)
+
+        # Set window stylesheet
+        get_stylesheet = set_stylesheet()
+        self.setStyleSheet(get_stylesheet)
+
+        # Main window setting
         self.centralWidget = QtWidgets.QWidget(self)
         self.centralWidget.setObjectName('centralWidget')
+
+        # Set main widget layout (centralWidget)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralWidget)
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName('horizontalLayout_2')
+
+        # Create frame for menu button
         self.menu_frame = QtWidgets.QFrame(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -123,6 +68,8 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spacer_frame.sizePolicy().hasHeightForWidth())
+
+        # Create frame for middle spacer
         self.spacer_frame.setSizePolicy(sizePolicy)
         self.spacer_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spacer_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -139,6 +86,8 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.generate_frame.sizePolicy().hasHeightForWidth())
+
+        # Create frame for generate button
         self.generate_frame.setSizePolicy(sizePolicy)
         self.generate_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.generate_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -158,17 +107,18 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontalLayout_2.addWidget(self.generate_frame)
         self.setCentralWidget(self.centralWidget)
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
+        # Set labels
+        self.menu_button.setText('☰')
+        self.title_label.setText('passwordy')
+        self.generate_button.setText('generate')
 
-    def retranslateUi(self):
-        _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate('self', 'self'))
-        self.menu_button.setText(_translate('self', '☰'))
-        self.title_label.setText(_translate('self', 'passwordy'))
-        self.generate_button.setText(_translate('self', 'generate'))
+        # Hide OS' default window title bar
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
+        # Connect slots
+        #QtCore.QMetaObject.connectSlotsByName(self)
 
+        
     def generate_passwords(self):
         # Clear the output box
         self.password_output.setText('')
