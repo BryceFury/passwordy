@@ -136,6 +136,8 @@ class Passwordy(QtWidgets.QMainWindow):
         # Connect generate button to generate passwords function
         self.generate_button.clicked.connect(self.generate_passwords)
 
+
+
         # Set central widget
         self.setCentralWidget(self.centralWidget)
 
@@ -147,6 +149,11 @@ class Passwordy(QtWidgets.QMainWindow):
 
         
     def generate_passwords(self):
+
+        # Increase window size
+        self.resize(500, 500)
+
+        '''
         # Clear the output box
         self.password_output.setText('')
 
@@ -195,7 +202,7 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
-
+        '''
  
 # Run App
 def main():
