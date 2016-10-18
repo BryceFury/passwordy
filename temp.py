@@ -380,6 +380,7 @@ class Passwordy(QtWidgets.QMainWindow):
 
         self.horizontallayout_14.addWidget(self.password_output)
 
+
     def generate_passwords(self):
 
         # Increase window size
@@ -433,6 +434,16 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
+
+    def mousePressEvent(self, event):
+        self.offset = event.pos()
+
+    def mouseMoveEvent(self, event):
+        x=event.globalX()
+        y=event.globalY()
+        x_w = self.offset.x()
+        y_w = self.offset.y()
+        self.move(x-x_w, y-y_w)
     
  
 # Run App
