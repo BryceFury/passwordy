@@ -10,7 +10,7 @@ def set_stylesheet():
            '\n'
            '#menu_button {\n'
            'text-align:center;\n'
-           'font: 18px;\n'
+           'font: 20px;\n'
            'color: #FFFFFF;\n'
            'background-color: #232532;\n'
            'border-style: solid;\n'

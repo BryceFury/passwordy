@@ -39,6 +39,8 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Create frame for menu button and title
         self.menu_frame = QtWidgets.QFrame(self.centralWidget)
+
+        # Set frame size
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -86,12 +88,18 @@ class Passwordy(QtWidgets.QMainWindow):
         self.spacer_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spacer_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.spacer_frame.setObjectName('spacer_frame')
+
+        # Create layout for spacer frame
         self.verticalLayout = QtWidgets.QVBoxLayout(self.spacer_frame)
         self.verticalLayout.setContentsMargins(11, 11, 11, 11)
         self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName('verticalLayout')
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.verticalLayout.addItem(spacerItem)
+
+        # Create horizontal spacer
+        spacer = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.verticalLayout.addItem(spacer)
+
+        # Add spacer to layout
         self.horizontalLayout_2.addWidget(self.spacer_frame)
 
         # Create frame for generate button
@@ -104,24 +112,29 @@ class Passwordy(QtWidgets.QMainWindow):
         self.generate_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.generate_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.generate_frame.setObjectName('generate_frame')
+
+        # Create layout for generate button frame
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.generate_frame)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName('verticalLayout_2')
+        
+        # Create generate button
         self.generate_button = QtWidgets.QPushButton(self.generate_frame)
+        self.generate_button.setText('generate')
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.generate_button.sizePolicy().hasHeightForWidth())
         self.generate_button.setSizePolicy(sizePolicy)
         self.generate_button.setObjectName('generate_button')
+
+        # Add generate button to layout
         self.verticalLayout_2.addWidget(self.generate_button)
         self.horizontalLayout_2.addWidget(self.generate_frame)
+
+        # Set central widget
         self.setCentralWidget(self.centralWidget)
-
-        
-
-        self.generate_button.setText('generate')
 
         # Hide OS' default window title bar
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
