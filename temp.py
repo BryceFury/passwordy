@@ -31,7 +31,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.centralWidget.setObjectName('centralWidget')
 
         # Set main widget layout (centralWidget)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralWidget)
+        self.horizontalLayout_2 = QtWidgets.QVBoxLayout(self.centralWidget)
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(0)
@@ -64,8 +64,8 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add menubutton widget to layout
         self.horizontalLayout.addWidget(self.menu_button)
 
-        # Connect menu button to settings option
-        self.menu_button.clicked.connect(self.menu_options)
+        # Connect menu button to open_menu function
+        self.menu_button.clicked.connect(self.open_menu)
 
         # Create title label
         self.title_label = QtWidgets.QLabel(self.menu_frame)
@@ -134,6 +134,8 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Add generate button to layout
         self.verticalLayout_3.addWidget(self.generate_button)
+
+        # Add generate frame to layout
         self.horizontalLayout_2.addWidget(self.generate_frame)
 
         # Connect generate button to generate_passwords function
@@ -148,19 +150,33 @@ class Passwordy(QtWidgets.QMainWindow):
         # Connect slots
         #QtCore.QMetaObject.connectSlotsByName(self)
 
-    def menu_options(self):
 
-        # Resize window
-        self.resize(500, 150)
+    def open_menu(self):
+        self.create_menu()
+
+
+    def close_menu(self):
+        self.create_ui()
+
+
+    def create_menu(self):
+
+        # Change menu button to 'open'
+        self.menu_button.setText('☷')
+
+        # Create options frame
         self.options_frame = QtWidgets.QFrame(self.centralWidget)
-        
-        self.options_frame = QtWidgets.QWidget(self)
         self.options_frame.setObjectName('options_frame')
         self.horizontallayout_4 = QtWidgets.QHBoxLayout(self.options_frame)
         self.horizontallayout_4.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
-        self.horizontallayout_4.setContentsMargins(0, 50, 0, 0)
+        self.horizontallayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_4.setSpacing(0)
         self.horizontallayout_4.setObjectName('horizontallayout_4')
+
+        # Add options frame to layout
+        self.horizontalLayout_2.addWidget(self.options_frame)
+        
+        # Add checkboxes frame        
         self.checks_frame = QtWidgets.QFrame(self.options_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -214,6 +230,12 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spins_frame.sizePolicy().hasHeightForWidth())
+
+        self.checkBox_3.setText('Numbers')
+        self.checkBox_4.setText('Specials')
+        self.checkBox.setText('Lowercase')
+        self.checkBox_2.setText('Uppercase')
+        
         self.spins_frame.setSizePolicy(sizePolicy)
         self.spins_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spins_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -274,11 +296,17 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontallayout_5.addWidget(self.spinBox_2)
         self.verticallayout_3.addWidget(self.spin_boxes_frame)
         self.horizontallayout_4.addWidget(self.spins_frame)
+
+        self.characters_label.setText('Number of Characters')
+        self.passwords_label.setText('Number of Passwords')
+
+        
         self.close_button_frame = QtWidgets.QFrame(self.options_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.close_button_frame.sizePolicy().hasHeightForWidth())
+        
         self.close_button_frame.setSizePolicy(sizePolicy)
         self.close_button_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.close_button_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -296,20 +324,12 @@ class Passwordy(QtWidgets.QMainWindow):
         self.close_options_button.setObjectName('close_options_button')
         self.verticallayout_4.addWidget(self.close_options_button)
         self.horizontallayout_4.addWidget(self.close_button_frame)
-        self.setCentralWidget(self.options_frame)
-        self.checkBox_3.setText('Numbers')
-        self.checkBox_4.setText('Specials')
-        self.checkBox.setText('Lowercase')
-        self.checkBox_2.setText('Uppercase')
-        self.characters_label.setText('Number of Characters')
-        self.passwords_label.setText('Number of Passwords')
+                
         self.close_options_button.setText('X')
-
+        '''
         # Connect options close button to options_close function
         self.close_options_button.clicked.connect(self.options_close)
-
-        #self.horizontalLayout.addWidget(self.options_frame)
-
+        '''
 
     # Options close button action
     def options_close(self):
@@ -370,7 +390,7 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
-        '''
+ '''       
  
 # Run App
 def main():
