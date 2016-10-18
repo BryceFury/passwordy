@@ -3,105 +3,171 @@ import string
 import sys
 
 
-from PyQt5 import QtGui, QtWidgets
-
-class Passwordy(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super(Passwordy, self).__init__(parent)
-
-        QtWidgets.QWidget.__init__(self)
-
-        tabWidget = QtWidgets.QTabWidget()
-        tabWidget.addTab(generate_tab(), 'General')
-        tabWidget.addTab(manage_tab(), 'Permissions')
-        tabWidget.addTab(settings_tab(), 'Settings')
-        tabWidget.setStyleSheet('background: #FFFFFF')
-
-        # Set main layout, add tab widget
-        mainLayout = QtWidgets.QVBoxLayout()
-        mainLayout.addWidget(tabWidget)
-        self.setLayout(mainLayout)
-
-        self.setWindowTitle('Passwordy')
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class generate_tab(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super(generate_tab, self).__init__(parent)
+# Create main canvas
+class Passwordy(QtWidgets.QMainWindow):
+ 
+    def __init__(self, parent = None):
+        QtWidgets.QMainWindow.__init__(self,parent)
+ 
+        # Default filename
 
-        QtWidgets.QWidget.__init__(self)
+        self.create_ui()
 
-        # Create Labels
-        # Choices
-        self.numbers_label = QtWidgets.QLabel('Numbers')
-        self.lowercase_label_label = QtWidgets.QLabel('Lowercase letters')
-        self.uppercase_label = QtWidgets.QLabel('Uppercase letters')
-        self.special_characters_label = QtWidgets.QLabel('Special Characters')
-        # Input
-        self.number_of_characters_label = QtWidgets.QLabel('Number of Characters')
-        self.number_of_passwords_label = QtWidgets.QLabel('Number of Passwords')
-        # Output
-        self.generated_passwords_label = QtWidgets.QLabel('Generated Passwords :')
+ 
+    def create_ui(self):
+ 
+        self.setObjectName('self')
+        self.resize(500, 61)
+        self.setStyleSheet('#centralWidget {\n'
+                           'background: #232532;\n'
+                           'border: None;\n'
+                           '}\n'
+                           '\n'
+                           '#menu_frame {\n'
+                           'border: None;\n'
+                           '}\n'
+                           '\n'
+                           '#menu_button {\n'
+                           'text-align:center;\n'
+                           'font: 18px;\n'
+                           'color: #FFFFFF;\n'
+                           'background-color: #232532;\n'
+                           'border-style: solid;\n'
+                           'border-width: 0px;\n'
+                           'max-width:40px;\n'
+                           'max-height:40px;\n'
+                           'min-width:40px;\n'
+                           'min-height:40px;\n'
+                           '}\n'
+                           '\n'
+                           '#menu_frame QPushButton:hover {\n'
+                           'color: #59F3D7;\n'
+                           '}\n'
+                           '\n'
+                           '#generate_frame {\n'
+                           'border: None;\n'
+                           '}\n'
+                           '\n'
+                           '#generate_button {\n'
+                           'text-align:center;\n'
+                           'font: 18px;\n'
+                           'color: #FFFFFF;\n'
+                           'border-style: solid;\n'
+                           'border-width: 0px;\n'
+                           'border-radius: 25px;\n'
+                           'max-width:100px;\n'
+                           'max-height:50px;\n'
+                           'min-width:100px;\n'
+                           'min-height:50px;\n'
+                           '}\n'
+                           '\n'
+                           '#generate_button:hover {\n'
+                           'color: #59F3D7;\n'
+                           '}\n'
+                           '\n'
+                           '#spacer_frame {\n'
+                           'border: None;\n'
+                           'max-width:250px;\n'
+                           'max-height:50px;\n'
+                           'min-width:225px;\n'
+                           'min-height:50px;\n'
+                           '}\n'
+                           '\n'
+                           'QLabel {\n'
+                           'color: #FFFFFF;\n'
+                           'font: 18px;\n'
+                           'max-height:20px;\n'
+                           'min-height:20px;\n'
+                           '}\n'
+                           '\n'
+                           '\n'
+                           '')
 
-        # Create checkboxes
-        self.numbers_checkbox = QtWidgets.QCheckBox()
-        self.lowercase_checkbox = QtWidgets.QCheckBox()
-        self.uppercase_checkbox = QtWidgets.QCheckBox()
-        self.special_characters_checkbox = QtWidgets.QCheckBox()
+        self.centralWidget = QtWidgets.QWidget(self)
+        self.centralWidget.setObjectName('centralWidget')
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralWidget)
+        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName('horizontalLayout_2')
+        self.menu_frame = QtWidgets.QFrame(self.centralWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.menu_frame.sizePolicy().hasHeightForWidth())
+        self.menu_frame.setSizePolicy(sizePolicy)
+        self.menu_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.menu_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.menu_frame.setObjectName('menu_frame')
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.menu_frame)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName('horizontalLayout')
+        self.menu_button = QtWidgets.QPushButton(self.menu_frame)
+        self.menu_button.setObjectName('menu_button')
+        self.horizontalLayout.addWidget(self.menu_button)
+        self.title_label = QtWidgets.QLabel(self.menu_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.title_label.sizePolicy().hasHeightForWidth())
+        self.title_label.setSizePolicy(sizePolicy)
+        self.title_label.setObjectName('title_label')
+        self.horizontalLayout.addWidget(self.title_label)
+        self.horizontalLayout_2.addWidget(self.menu_frame)
+        self.spacer_frame = QtWidgets.QFrame(self.centralWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spacer_frame.sizePolicy().hasHeightForWidth())
+        self.spacer_frame.setSizePolicy(sizePolicy)
+        self.spacer_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.spacer_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.spacer_frame.setObjectName('spacer_frame')
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.spacer_frame)
+        self.verticalLayout.setContentsMargins(11, 11, 11, 11)
+        self.verticalLayout.setSpacing(6)
+        self.verticalLayout.setObjectName('verticalLayout')
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.verticalLayout.addItem(spacerItem)
+        self.horizontalLayout_2.addWidget(self.spacer_frame)
+        self.generate_frame = QtWidgets.QFrame(self.centralWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.generate_frame.sizePolicy().hasHeightForWidth())
+        self.generate_frame.setSizePolicy(sizePolicy)
+        self.generate_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.generate_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.generate_frame.setObjectName('generate_frame')
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.generate_frame)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName('verticalLayout_2')
+        self.generate_button = QtWidgets.QPushButton(self.generate_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.generate_button.sizePolicy().hasHeightForWidth())
+        self.generate_button.setSizePolicy(sizePolicy)
+        self.generate_button.setObjectName('generate_button')
+        self.verticalLayout_2.addWidget(self.generate_button)
+        self.horizontalLayout_2.addWidget(self.generate_frame)
+        self.setCentralWidget(self.centralWidget)
 
-        # Create number boxes
-        self.number_of_passwords = QtWidgets.QSpinBox()
-        self.number_of_passwords.setMinimum(1)
-        self.number_of_passwords.setMaximum(64)
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-        self.number_of_characters = QtWidgets.QSpinBox()
-        self.number_of_characters.setMinimum(1)
-        self.number_of_characters.setMaximum(64)
+    def retranslateUi(self):
+        _translate = QtCore.QCoreApplication.translate
+        self.setWindowTitle(_translate('self', 'self'))
+        self.menu_button.setText(_translate('self', '☰'))
+        self.title_label.setText(_translate('self', 'passwordy'))
+        self.generate_button.setText(_translate('self', 'generate'))
 
-        # Create output box
-        self.password_output = QtWidgets.QTextEdit()
-        self.password_output.setReadOnly(True)
-        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
-                                           QtWidgets.QSizePolicy.Expanding)
-        self.password_output.setStyleSheet('font: bold 12px;'
-                                           'background: #FFFFFF; '
-                                           'border: 1px solid #272727')
-
-        # Create password generate button
-        self.generate_password_button = QtWidgets.QPushButton('Generate Password')
-        self.generate_password_button.setStyleSheet('font: 12px; background-color:#FFFFFF; border: 1px solid #272727')
-
-        # Create layout, add widgets
-        self.grid = QtWidgets.QGridLayout()
-            # Add widget to row, label to same row, next column
-        self.grid.addWidget(self.numbers_checkbox, 0, 0)
-        self.grid.addWidget(self.numbers_label, 0, 1)
-        self.grid.addWidget(self.lowercase_checkbox, 1, 0)
-        self.grid.addWidget(self.lowercase_label_label, 1, 1)
-        self.grid.addWidget(self.uppercase_checkbox, 2, 0)
-        self.grid.addWidget(self.uppercase_label, 2, 1)
-        self.grid.addWidget(self.special_characters_checkbox, 3, 0)
-        self.grid.addWidget(self.special_characters_label, 3, 1)
-        self.grid.addWidget(self.number_of_characters, 4, 0)
-        self.grid.addWidget(self.number_of_characters_label, 4, 1)
-        self.grid.addWidget(self.number_of_passwords, 5, 0)
-        self.grid.addWidget(self.number_of_passwords_label, 5, 1)
-        # Add these to next column
-        self.grid.addWidget(self.generated_passwords_label, 0, 2)
-        self.grid.addWidget(self.password_output, 1, 2, 4, 1)
-        self.grid.addWidget(self.generate_password_button, 5, 2)
-
-        # Set layout
-        self.setLayout(self.grid)
-
-        # Connect password generate button to password generate functions
-        self.generate_password_button.clicked.connect(self.generate_passwords)
-
-        # Set window
-        self.setFixedSize(500, 250)
-        self.setWindowTitle('Passwordy')
-        self.setWindowIcon(QtGui.QIcon('../assets/padlock.png'))
-        self.setStyleSheet('background: #FFFFFF;')
 
     def generate_passwords(self):
         # Clear the output box
@@ -141,10 +207,10 @@ class generate_tab(QtWidgets.QWidget):
 
         # If user hasn't selected a checkbox, inform them in a popup
         else:
-            informer = QtWidgets.QMessageBox()
+            informer = QMessageBox()
             #informer.setWindowTitle('Passwordy - Error')
-            informer.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            informer.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            informer.setStandardButtons(QMessageBox.Ok)
+            informer.setDefaultButton(QMessageBox.Ok)
                 # Warning text
             informer.setText('Error: ' + '\n' + 'You must make a selection using one of the checkboxes, please try again...')
             informer.exec_()
@@ -152,43 +218,18 @@ class generate_tab(QtWidgets.QWidget):
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
-  
 
-class manage_tab(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super(manage_tab, self).__init__(parent)
-        self.layout = QtWidgets.QFormLayout()
-        self.box = QtWidgets.QHBoxLayout()
-        self.box.addWidget(QtWidgets.QRadioButton('Manage'))
-        self.box.addWidget(QtWidgets.QRadioButton('Passwords'))
-        #self.layout.addRow(QtWidgets.QLabel('Test'),sex) 
-        self.layout.addRow('Testy',QtWidgets.QLineEdit())
-        #self.setTabText(1,'Test test')
-        self.setStyleSheet('background: #FFFFFF;')
-        self.setLayout(self.layout)
-
-
-class settings_tab(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super(settings_tab, self).__init__(parent)
-        self.layout = QtWidgets.QFormLayout()
-        self.box = QtWidgets.QHBoxLayout()
-        self.box.addWidget(QtWidgets.QRadioButton('Manage'))
-        self.box.addWidget(QtWidgets.QRadioButton('Passwords'))
-        #self.layout.addRow(QtWidgets.QLabel('Test'),sex)
-        self.layout.addRow('Testy',QtWidgets.QLineEdit())
-        #self.setTabText(1,'Test test')
-        self.setStyleSheet('background: #FFFFFF;')
-        self.setLayout(self.layout)
-
-            
-# The usual
+ 
+# Run App
 def main():
+ 
     app = QtWidgets.QApplication(sys.argv)
-
-    ex = Passwordy()
-    ex.show()
+ 
+    main = Passwordy()
+    main.show()
+ 
     sys.exit(app.exec_())
-
+ 
 if __name__ == '__main__':
+    
     main()
