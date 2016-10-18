@@ -133,6 +133,9 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticalLayout_2.addWidget(self.generate_button)
         self.horizontalLayout_2.addWidget(self.generate_frame)
 
+        # Connect generate button to generate passwords function
+        self.generate_button.clicked.connect(self.generate_passwords)
+
         # Set central widget
         self.setCentralWidget(self.centralWidget)
 
