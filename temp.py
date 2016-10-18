@@ -37,7 +37,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName('horizontalLayout_2')
 
-        # Create frame for menu button
+        # Create frame for menu button and title
         self.menu_frame = QtWidgets.QFrame(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -47,13 +47,22 @@ class Passwordy(QtWidgets.QMainWindow):
         self.menu_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.menu_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.menu_frame.setObjectName('menu_frame')
+
+        # Set menu frames layout
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.menu_frame)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName('horizontalLayout')
+
+        # Create menubutton
         self.menu_button = QtWidgets.QPushButton(self.menu_frame)
         self.menu_button.setObjectName('menu_button')
+        self.menu_button.setText('☰')
+
+        # Add menubutton widget to layout
         self.horizontalLayout.addWidget(self.menu_button)
+
+        # Create title label
         self.title_label = QtWidgets.QLabel(self.menu_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -61,15 +70,18 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setHeightForWidth(self.title_label.sizePolicy().hasHeightForWidth())
         self.title_label.setSizePolicy(sizePolicy)
         self.title_label.setObjectName('title_label')
+        self.title_label.setText('passwordy')
+
+        # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
         self.horizontalLayout_2.addWidget(self.menu_frame)
+
+        # Create frame for middle spacer
         self.spacer_frame = QtWidgets.QFrame(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.spacer_frame.sizePolicy().hasHeightForWidth())
-
-        # Create frame for middle spacer
+        sizePolicy.setHeightForWidth(self.spacer_frame.sizePolicy().hasHeightForWidth())     
         self.spacer_frame.setSizePolicy(sizePolicy)
         self.spacer_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spacer_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -81,13 +93,13 @@ class Passwordy(QtWidgets.QMainWindow):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.verticalLayout.addItem(spacerItem)
         self.horizontalLayout_2.addWidget(self.spacer_frame)
+
+        # Create frame for generate button
         self.generate_frame = QtWidgets.QFrame(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.generate_frame.sizePolicy().hasHeightForWidth())
-
-        # Create frame for generate button
         self.generate_frame.setSizePolicy(sizePolicy)
         self.generate_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.generate_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -107,9 +119,8 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontalLayout_2.addWidget(self.generate_frame)
         self.setCentralWidget(self.centralWidget)
 
-        # Set labels
-        self.menu_button.setText('☰')
-        self.title_label.setText('passwordy')
+        
+
         self.generate_button.setText('generate')
 
         # Hide OS' default window title bar
