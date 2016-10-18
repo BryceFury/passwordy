@@ -31,14 +31,27 @@ class Passwordy(QtWidgets.QMainWindow):
         self.centralWidget.setObjectName('centralWidget')
 
         # Set main widget layout (centralWidget)
-        self.horizontalLayout_2 = QtWidgets.QVBoxLayout(self.centralWidget)
-        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName('horizontalLayout_2')
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.centralWidget)
+        self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_10.setSpacing(0)
+        self.verticalLayout_10.setObjectName('verticalLayout_10')
+
+         # Create top frame
+        self.top_frame = QtWidgets.QFrame(self.centralWidget)
+        self.top_frame.setObjectName('top_frame')
+        self.horizontallayout_10 = QtWidgets.QHBoxLayout(self.top_frame)
+        self.horizontallayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.horizontallayout_10.setContentsMargins(0, 0, 0, 0)
+        self.horizontallayout_10.setSpacing(0)
+        self.horizontallayout_10.setObjectName('horizontallayout_10')
+
+        # Add top frame to layout
+        self.verticalLayout_10.addWidget(self.top_frame)
+        
 
         # Create frame for menu button and title
-        self.menu_frame = QtWidgets.QFrame(self.centralWidget)
+        self.menu_frame = QtWidgets.QFrame(self.top_frame)
 
         # Set frame size
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -79,10 +92,10 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
-        self.horizontalLayout_2.addWidget(self.menu_frame)
+        self.horizontallayout_10.addWidget(self.menu_frame)
 
         # Create frame for middle spacer
-        self.spacer_frame = QtWidgets.QFrame(self.centralWidget)
+        self.spacer_frame = QtWidgets.QFrame(self.top_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -94,8 +107,8 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Create layout for spacer frame
         self.verticalLayout = QtWidgets.QVBoxLayout(self.spacer_frame)
-        self.verticalLayout.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout.setSpacing(6)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName('verticalLayout')
 
         # Create horizontal spacer
@@ -103,10 +116,10 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticalLayout.addItem(spacer)
 
         # Add spacer to layout
-        self.horizontalLayout_2.addWidget(self.spacer_frame)
-
+        self.horizontallayout_10.addWidget(self.spacer_frame)
+        
         # Create frame for generate button
-        self.generate_frame = QtWidgets.QFrame(self.centralWidget)
+        self.generate_frame = QtWidgets.QFrame(self.top_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -136,11 +149,12 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticalLayout_3.addWidget(self.generate_button)
 
         # Add generate frame to layout
-        self.horizontalLayout_2.addWidget(self.generate_frame)
+        self.horizontallayout_10.addWidget(self.generate_frame)
 
         # Connect generate button to generate_passwords function
+        self.generate_button.clicked.connect(self.password_ui)
         self.generate_button.clicked.connect(self.generate_passwords)
-
+        
         # Set central widget
         self.setCentralWidget(self.centralWidget)
 
@@ -152,14 +166,14 @@ class Passwordy(QtWidgets.QMainWindow):
 
 
     def open_menu(self):
-        self.create_menu()
+        self.menu_ui()
 
 
     def close_menu(self):
         self.create_ui()
 
 
-    def create_menu(self):
+    def menu_ui(self):
 
         # Change menu button to 'open'
         self.menu_button.setText('☷')
@@ -174,7 +188,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontallayout_4.setObjectName('horizontallayout_4')
 
         # Add options frame to layout
-        self.horizontalLayout_2.addWidget(self.options_frame)
+        self.verticalLayout_10.addWidget(self.options_frame)
         
         # Add checkboxes frame        
         self.checks_frame = QtWidgets.QFrame(self.options_frame)
@@ -198,14 +212,14 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticallayout_6.setContentsMargins(11, 11, 11, 11)
         self.verticallayout_6.setSpacing(6)
         self.verticallayout_6.setObjectName('verticallayout_6')
-        self.checkBox_3 = QtWidgets.QCheckBox(self.characters_frame)
-        self.checkBox_3.setChecked(True)
-        self.checkBox_3.setObjectName('checkBox_3')
-        self.verticallayout_6.addWidget(self.checkBox_3)
-        self.checkBox_4 = QtWidgets.QCheckBox(self.characters_frame)
-        self.checkBox_4.setChecked(True)
-        self.checkBox_4.setObjectName('checkBox_4')
-        self.verticallayout_6.addWidget(self.checkBox_4)
+        self.numbers_checkbox = QtWidgets.QCheckBox(self.characters_frame)
+        self.numbers_checkbox.setChecked(True)
+        self.numbers_checkbox.setObjectName('numbers_checkbox')
+        self.verticallayout_6.addWidget(self.numbers_checkbox)
+        self.special_characters_checkbox = QtWidgets.QCheckBox(self.characters_frame)
+        self.special_characters_checkbox.setChecked(True)
+        self.special_characters_checkbox.setObjectName('special_characters_checkbox')
+        self.verticallayout_6.addWidget(self.special_characters_checkbox)
         self.horizontallayout_3.addWidget(self.characters_frame)
         self.case_frame = QtWidgets.QFrame(self.checks_frame)
         self.case_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -215,14 +229,14 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticallayout_7.setContentsMargins(11, 11, 11, 11)
         self.verticallayout_7.setSpacing(6)
         self.verticallayout_7.setObjectName('verticallayout_7')
-        self.checkBox = QtWidgets.QCheckBox(self.case_frame)
-        self.checkBox.setChecked(True)
-        self.checkBox.setObjectName('checkBox')
-        self.verticallayout_7.addWidget(self.checkBox)
-        self.checkBox_2 = QtWidgets.QCheckBox(self.case_frame)
-        self.checkBox_2.setChecked(True)
-        self.checkBox_2.setObjectName('checkBox_2')
-        self.verticallayout_7.addWidget(self.checkBox_2)
+        self.lowercase_checkbox = QtWidgets.QCheckBox(self.case_frame)
+        self.lowercase_checkbox.setChecked(True)
+        self.lowercase_checkbox.setObjectName('lowercase_checkbox')
+        self.verticallayout_7.addWidget(self.lowercase_checkbox)
+        self.uppercase_checkbox = QtWidgets.QCheckBox(self.case_frame)
+        self.uppercase_checkbox.setChecked(True)
+        self.uppercase_checkbox.setObjectName('uppercase_checkbox')
+        self.verticallayout_7.addWidget(self.uppercase_checkbox)
         self.horizontallayout_3.addWidget(self.case_frame)
         self.horizontallayout_4.addWidget(self.checks_frame)
         self.spins_frame = QtWidgets.QFrame(self.options_frame)
@@ -231,10 +245,10 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spins_frame.sizePolicy().hasHeightForWidth())
 
-        self.checkBox_3.setText('Numbers')
-        self.checkBox_4.setText('Specials')
-        self.checkBox.setText('Lowercase')
-        self.checkBox_2.setText('Uppercase')
+        self.numbers_checkbox.setText('Numbers')
+        self.special_characters_checkbox.setText('Specials')
+        self.lowercase_checkbox.setText('Lowercase')
+        self.uppercase_checkbox.setText('Uppercase')
         
         self.spins_frame.setSizePolicy(sizePolicy)
         self.spins_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -285,15 +299,15 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontallayout_5.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_5.setSpacing(0)
         self.horizontallayout_5.setObjectName('horizontallayout_5')
-        self.spinBox = QtWidgets.QSpinBox(self.spin_boxes_frame)
-        self.spinBox.setMinimum(1)
-        self.spinBox.setMaximum(64)
-        self.spinBox.setObjectName('spinBox')
-        self.horizontallayout_5.addWidget(self.spinBox)
-        self.spinBox_2 = QtWidgets.QSpinBox(self.spin_boxes_frame)
-        self.spinBox_2.setMinimum(1)
-        self.spinBox_2.setObjectName('spinBox_2')
-        self.horizontallayout_5.addWidget(self.spinBox_2)
+        self.number_of_passwords = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.number_of_passwords.setMinimum(1)
+        self.number_of_passwords.setMaximum(64)
+        self.number_of_passwords.setObjectName('number_of_passwords')
+        self.horizontallayout_5.addWidget(self.number_of_passwords)
+        self.number_of_characters = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.number_of_characters.setMinimum(1)
+        self.number_of_characters.setObjectName('number_of_characters')
+        self.horizontallayout_5.addWidget(self.number_of_characters)
         self.verticallayout_3.addWidget(self.spin_boxes_frame)
         self.horizontallayout_4.addWidget(self.spins_frame)
 
@@ -331,17 +345,46 @@ class Passwordy(QtWidgets.QMainWindow):
         self.close_options_button.clicked.connect(self.options_close)
         '''
 
-    # Options close button action
-    def options_close(self):
-        self.resize(500, 50)
+    def open_password_ouput(self):
+        self.password_ui()
+
+
+    def close_password_ouput(self):
         self.create_ui()
+
+    def password_ui(self):
+
+        # Change menu button to 'open'
+        self.menu_button.setText('☷')
+
+        # Create output frame
+        self.output_frame = QtWidgets.QFrame(self.centralWidget)
+        self.output_frame.setObjectName('output_frame')
+        self.horizontallayout_14 = QtWidgets.QHBoxLayout(self.output_frame)
+        self.horizontallayout_14.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.horizontallayout_14.setContentsMargins(0, 0, 0, 0)
+        self.horizontallayout_14.setSpacing(0)
+        self.horizontallayout_14.setObjectName('horizontallayout_14')
+
+        # Add output frame to layout
+        self.verticalLayout_10.addWidget(self.output_frame)
+
+        # Create output box
+        self.password_output = QtWidgets.QTextEdit(self.output_frame)
+        self.password_output.setReadOnly(True)
+        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
+                                           QtWidgets.QSizePolicy.Expanding)
+        self.password_output.setStyleSheet('font: bold 12px;'
+                                           'background: #FFFFFF; '
+                                           'border: 1px solid #272727')
+
+        self.horizontallayout_14.addWidget(self.password_output)
 
     def generate_passwords(self):
 
         # Increase window size
         self.resize(500, 250)
 
-        '''
         # Clear the output box
         self.password_output.setText('')
 
@@ -360,7 +403,7 @@ class Passwordy(QtWidgets.QMainWindow):
         # Init empty password list
         final_password_list = []
 
-        # Check user has used a checkbox, add characters from strings relative to checkboxes, generate password
+        # Check user has used a lowercase_checkbox, add characters from strings relative to checkboxes, generate password
         if True in [self.numbers_checkbox.isChecked(), 
                     self.lowercase_checkbox.isChecked(), 
                     self.uppercase_checkbox.isChecked(),
@@ -377,7 +420,7 @@ class Passwordy(QtWidgets.QMainWindow):
 
                 final_password_list.append(password)
 
-        # If user hasn't selected a checkbox, inform them in a popup
+        # If user hasn't selected a lowercase_checkbox, inform them in a popup
         else:
             informer = QMessageBox()
             #informer.setWindowTitle('Passwordy - Error')
@@ -390,7 +433,7 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
- '''       
+    
  
 # Run App
 def main():
