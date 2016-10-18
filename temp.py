@@ -13,11 +13,11 @@ class Passwordy(QtWidgets.QMainWindow):
  
     def __init__(self, parent = None):
         QtWidgets.QMainWindow.__init__(self,parent)
- 
+
         # Call function to create UI
-        self.create_ui()
- 
-    def create_ui(self):
+        self.create_main_ui()
+
+    def create_main_ui(self):
 
         # Set window size
         self.resize(500, 50)
@@ -163,6 +163,7 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Connect slots
         #QtCore.QMetaObject.connectSlotsByName(self)
+    
 
 
     def open_menu(self):
@@ -170,7 +171,7 @@ class Passwordy(QtWidgets.QMainWindow):
 
 
     def close_menu(self):
-        self.create_ui()
+        self.create_main_ui()
 
 
     def menu_ui(self):
@@ -339,18 +340,18 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticallayout_4.addWidget(self.close_options_button)
         self.horizontallayout_4.addWidget(self.close_button_frame)
                 
-        self.close_options_button.setText('X')
-        '''
+        self.close_options_button.setText('⇪')
+
         # Connect options close button to options_close function
-        self.close_options_button.clicked.connect(self.options_close)
-        '''
+        self.close_options_button.clicked.connect(self.close_menu)
+    
 
     def open_password_ouput(self):
         self.password_ui()
 
 
     def close_password_ouput(self):
-        self.create_ui()
+        self.create_main_ui()
 
     def password_ui(self):
 
