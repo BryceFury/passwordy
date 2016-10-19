@@ -91,30 +91,6 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
         self.horizontallayout_10.addWidget(self.menu_frame)
-
-        # Create frame for middle spacer
-        self.spacer_frame = QtWidgets.QFrame(self.top_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.spacer_frame.sizePolicy().hasHeightForWidth())     
-        self.spacer_frame.setSizePolicy(sizePolicy)
-        self.spacer_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.spacer_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.spacer_frame.setObjectName('spacer_frame')
-
-        # Create layout for spacer frame
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.spacer_frame)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName('verticalLayout')
-
-        # Create horizontal spacer
-        spacer = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.verticalLayout.addItem(spacer)
-
-        # Add spacer to layout
-        self.horizontallayout_10.addWidget(self.spacer_frame)
         
         # Create frame for generate button
         self.generate_frame = QtWidgets.QFrame(self.top_frame)
@@ -151,6 +127,39 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Connect generate button to generate_passwords function
         self.generate_button.clicked.connect(self.open_password_ouput)
+
+        # Create frame for quit button
+        self.quit_frame = QtWidgets.QFrame(self.top_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.quit_frame.sizePolicy().hasHeightForWidth())     
+        self.quit_frame.setSizePolicy(sizePolicy)
+        self.quit_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.quit_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.quit_frame.setObjectName('quit_frame')
+
+        # Create layout for quit frame
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.quit_frame)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName('verticalLayout')
+
+        # Create quit button
+        self.quit_button = QtWidgets.QPushButton(self.quit_frame)
+        self.quit_button.setText('quit')
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.generate_button.sizePolicy().hasHeightForWidth())
+        self.quit_button.setSizePolicy(sizePolicy)
+        self.quit_button.setObjectName('quit_button')
+
+        # Add quit button to layout
+        self.horizontallayout_10.addWidget(self.quit_frame)
+
+        # Connect quit button to quit function
+        self.generate_button.clicked.connect(self.quit_program)
         
         # Set central widget
         self.setCentralWidget(self.centralWidget)
