@@ -1,8 +1,9 @@
 # Passwordy
 
 A tool to generate passwords with a QT GUI.
-
-![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_top_screenshot.png)
+<p align='center'>
+  <img src='https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_top_screenshot.png' alt='passwordy menu screenshot'/>
+</p>
 
 ## Installation
 
@@ -21,15 +22,23 @@ Run the script:
 
 Choose your settings:
 
-![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_menu_screenshot.png)
+<p align='center'>
+  <img src='https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_menu_screenshot.png' alt='passwordy menu screenshot'/>
+</p>
 
 Try different options (multiple choices can be made at one time).
 
-![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_settings_screenshot.png)
+<p align='center'>
+  <img src='https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_settings_screenshot.png' alt='passwordy settings screenshot'/>
+</p>
+
 
 Click the generate button and generate your passwords!
 
-![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_settings_screenshot.png)
+<p align='center'>
+  <img src='https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_generate_screenshot.png' alt='passwordy generated passwords screenshot'/>
+</p>
+
 
 ## Contributing
 1. Fork it!
