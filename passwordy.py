@@ -183,25 +183,15 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Set password output open flag
         self.password_output_open = False
- 
 
-    def open_menu(self):
-        self.menu_ui()
+        # Set menu open flag
+        self.menu_open = False
 
-
-    def close_menu(self):
-        
-        # Hide menu
-        self.options_frame.hide()
-
-        # Reset window size
-        self.resize(500, 50)
-
-        # Reset menu button icon
-        self.menu_button.setText('☰')
-        
 
     def menu_ui(self):
+
+        # Set open flag
+        self.menu_open = True 
 
         # Change menu button to 'open'
         self.menu_button.setText('☷')
@@ -372,6 +362,29 @@ class Passwordy(QtWidgets.QMainWindow):
         self.close_options_button.clicked.connect(self.close_menu)
     
 
+    def open_menu(self):
+        if not self.menu_open:
+            self.menu_ui()
+        else:
+            self.close_menu()
+
+
+    def close_menu(self):
+        
+        # Hide menu
+        self.options_frame.hide()
+
+        # Reset window size
+        self.resize(500, 50)
+
+        # Reset menu button icon
+        self.menu_button.setText('☰')
+
+        # Set menu open flag
+        self.menu_open = False
+        
+        
+
     def open_password_ouput(self):
         if not self.password_output_open:
             self.password_ui()
@@ -418,11 +431,10 @@ class Passwordy(QtWidgets.QMainWindow):
 
 
 
-
     def generate_passwords(self):
 
         # Increase window size
-        self.resize(500, 50)
+        #self.resize(500, 50)
 
         # Clear the output box
         self.password_output.setText('')
