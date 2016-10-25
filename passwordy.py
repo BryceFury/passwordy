@@ -42,7 +42,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.horizontallayout_10 = QtWidgets.QHBoxLayout(self.top_frame)
         self.horizontallayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontallayout_10.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_10.setSpacing(0)
+        self.horizontallayout_10.setSpacing(-1)
         self.horizontallayout_10.setObjectName('horizontallayout_10')
 
         # Add top frame to layout
@@ -64,19 +64,8 @@ class Passwordy(QtWidgets.QMainWindow):
         # Set menu frames layout
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.menu_frame)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setSpacing(-1)
         self.horizontalLayout.setObjectName('horizontalLayout')
-
-        # Create menubutton
-        self.menu_button = QtWidgets.QPushButton(self.menu_frame)
-        self.menu_button.setObjectName('menu_button')
-        self.menu_button.setText('☰')
-
-        # Add menubutton widget to layout
-        self.horizontalLayout.addWidget(self.menu_button)
-
-        # Connect menu button to open_menu function
-        self.menu_button.clicked.connect(self.open_menu)
 
         # Create title label
         self.title_label = QtWidgets.QLabel(self.menu_frame)
@@ -90,6 +79,19 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
+
+        # Create menubutton
+        self.menu_button = QtWidgets.QPushButton(self.menu_frame)
+        self.menu_button.setObjectName('menu_button')
+        self.menu_button.setText('☰')
+
+        # Add menubutton widget to layout
+        self.horizontalLayout.addWidget(self.menu_button)
+
+        # Connect menu button to open_menu function
+        self.menu_button.clicked.connect(self.open_menu)
+
+        # Add menu frame to layout
         self.horizontallayout_10.addWidget(self.menu_frame)
         
         # Create frame for generate button
@@ -128,38 +130,41 @@ class Passwordy(QtWidgets.QMainWindow):
         # Connect generate button to generate_passwords function
         self.generate_button.clicked.connect(self.open_password_ouput)
 
-        # Create frame for quit button
-        self.quit_frame = QtWidgets.QFrame(self.top_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        # Create frame for exit button
+        self.exit_frame = QtWidgets.QFrame(self.top_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.quit_frame.sizePolicy().hasHeightForWidth())     
-        self.quit_frame.setSizePolicy(sizePolicy)
-        self.quit_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.quit_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.quit_frame.setObjectName('quit_frame')
+        sizePolicy.setHeightForWidth(self.exit_frame.sizePolicy().hasHeightForWidth())
+        self.exit_frame.setSizePolicy(sizePolicy)
+        self.exit_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.exit_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.exit_frame.setObjectName('exit_frame')
 
-        # Create layout for quit frame
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.quit_frame)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName('verticalLayout')
-
-        # Create quit button
-        self.quit_button = QtWidgets.QPushButton(self.quit_frame)
-        self.quit_button.setText('quit')
+        # Create layout for exit button frame
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.exit_frame)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName('verticalLayout_3')
+        
+        # Create exit button
+        self.exit_button = QtWidgets.QPushButton(self.exit_frame)
+        self.exit_button.setText('exit')
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.generate_button.sizePolicy().hasHeightForWidth())
-        self.quit_button.setSizePolicy(sizePolicy)
-        self.quit_button.setObjectName('quit_button')
+        sizePolicy.setHeightForWidth(self.exit_button.sizePolicy().hasHeightForWidth())
+        self.exit_button.setSizePolicy(sizePolicy)
+        self.exit_button.setObjectName('exit_button')
 
-        # Add quit button to layout
-        self.horizontallayout_10.addWidget(self.quit_frame)
+        # Add exit button to layout
+        self.verticalLayout_3.addWidget(self.exit_button)
 
-        # Connect quit button to quit function
-        self.generate_button.clicked.connect(self.quit_program)
+        # Add exit frame to layout
+        self.horizontallayout_10.addWidget(self.exit_frame)
+
+        # Connect exit button to close function
+        self.exit_button.clicked.connect(self.close)
         
         # Set central widget
         self.setCentralWidget(self.centralWidget)
@@ -417,7 +422,7 @@ class Passwordy(QtWidgets.QMainWindow):
     def generate_passwords(self):
 
         # Increase window size
-        self.resize(500, 250)
+        self.resize(500, 50)
 
         # Clear the output box
         self.password_output.setText('')
