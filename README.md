@@ -2,11 +2,11 @@
 
 A tool to generate passwords with a QT GUI.
 
-![](https://raw.githubusercontent.com/BryceFury/passwordy/master/assets/screenshots/passwordy_screenshot.png)
+![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_top_screenshot.png)
 
 ## Installation
 
-Get PyQT5
+Get PyQT5:
 
     pip install pyqt5
 
@@ -18,9 +18,18 @@ Run the script:
 
     python passwordy.py
 
-Select your options (multiple choices can be made at one time).
 
-Click the Generate button and generate your passwords!
+Choose your settings:
+
+![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_menu_screenshot.png)
+
+Try different options (multiple choices can be made at one time).
+
+![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_settings_screenshot.png)
+
+Click the generate button and generate your passwords!
+
+![](https://github.com/BryceFury/passwordy/blob/master/assets/screenshots/passwordy_settings_screenshot.png)
 
 ## Contributing
 1. Fork it!
