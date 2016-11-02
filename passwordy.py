@@ -191,7 +191,7 @@ class Passwordy(QtWidgets.QMainWindow):
         if not self.password_output_open:
             self.resize(500, 50)
         else:
-            self.setFixedSize(500, 150)
+            self.setFixedSize(500, 200)
 
 
     def menu_ui(self):
@@ -373,7 +373,7 @@ class Passwordy(QtWidgets.QMainWindow):
             if not self.password_output_open:
                 self.setFixedSize(500, 100)
             else:
-                self.setFixedSize(500, 150)
+                self.setFixedSize(500, 200)
             self.menu_ui()
         else:
             self.close_menu()
@@ -388,7 +388,7 @@ class Passwordy(QtWidgets.QMainWindow):
         if not self.password_output_open:
             self.resize(500, 50)
         else:
-            self.setFixedSize(500, 150)
+            self.setFixedSize(500, 200)
 
         # Reset menu button icon
         self.menu_button.setText('☰')
@@ -399,7 +399,7 @@ class Passwordy(QtWidgets.QMainWindow):
         
     def open_password_ouput(self):
         if not self.password_output_open:
-            self.setFixedSize(500, 150)
+            self.setFixedSize(500, 200)
             self.password_ui()
             self.generate_passwords()
         else:
@@ -462,37 +462,23 @@ class Passwordy(QtWidgets.QMainWindow):
         final_password_list = []
 
         # Check user has used a lowercase_checkbox, add characters from strings relative to checkboxes, generate password
-        if True in [self.numbers_checkbox.isChecked(), 
-                    self.lowercase_checkbox.isChecked(), 
-                    self.uppercase_checkbox.isChecked(),
-                    self.special_characters_checkbox.isChecked()]:
-
-            output_characters = (numbers * self.numbers_checkbox.isChecked() 
-                                  + lowercase * self.lowercase_checkbox.isChecked() 
-                                  + uppercase * self.uppercase_checkbox.isChecked() 
-                                  + special_characters * self.special_characters_checkbox.isChecked())
-            # Check how many passwords the user requires, generate for that amount
-            for i in range(0, self.number_of_passwords.value()):
-
-                password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
-
-                final_password_list.append(password)
-
-        # If user hasn't selected a lowercase_checkbox, inform them in a popup
-        else:
-            informer = QMessageBox()
-            #informer.setWindowTitle('Passwordy - Error')
-            informer.setStandardButtons(QMessageBox.Ok)
-            informer.setDefaultButton(QMessageBox.Ok)
-                # Warning text
-            informer.setText('Error: ' + '\n' + 'You must make a selection using one of the checkboxes, please try again...')
-            informer.exec_()
+        output_characters = (numbers * self.numbers_checkbox.isChecked() 
+                           + lowercase * self.lowercase_checkbox.isChecked() 
+                           + uppercase * self.uppercase_checkbox.isChecked() 
+                           + special_characters * self.special_characters_checkbox.isChecked())
+        # Check how many passwords the user requires, generate for that amount
+        for i in range(0, self.number_of_passwords.value()):
+            password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
+            final_password_list.append(password)
 
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
 
 
+    ''' Window handling '''
+
+    # Listen for mouse click and move window when dragged
     def mousePressEvent(self, event):
         self.offset = event.pos()
 
@@ -505,7 +491,9 @@ class Passwordy(QtWidgets.QMainWindow):
         self.move(x-x_w, y-y_w)
     
  
-# Run App
+''' Run '''
+
+
 def main():
  
     app = QtWidgets.QApplication(sys.argv)
