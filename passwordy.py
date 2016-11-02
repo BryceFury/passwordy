@@ -259,19 +259,25 @@ class Passwordy(QtWidgets.QMainWindow):
         # Create options frame
         self.options_frame = QtWidgets.QFrame(self.centralWidget)
         self.options_frame.setObjectName('options_frame')
-        self.horizontallayout_4 = QtWidgets.QHBoxLayout(self.options_frame)
-        self.horizontallayout_4.setSizeConstraint(QtWidgets
-                                                  .QLayout
-                                                  .SetDefaultConstraint)
-        self.horizontallayout_4.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_4.setSpacing(0)
-        self.horizontallayout_4.setObjectName('horizontallayout_4')
+
+        # Set layout for options frame
+        self.options_frame_layout = QtWidgets.QHBoxLayout(self.options_frame)
+        self.options_frame_layout.setSizeConstraint(QtWidgets
+                                                    .QLayout
+                                                    .SetDefaultConstraint)
+        self.options_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.options_frame_layout.setSpacing(0)
+
+        # Set options frame name
+        self.options_frame_layout.setObjectName('options_frame_layout')
 
         # Add options frame to layout
         self.main_layout.addWidget(self.options_frame)
 
-        # Add checkboxes frame
+        # Create checkboxes frame
         self.checks_frame = QtWidgets.QFrame(self.options_frame)
+
+        # Set checkboxes frame's size
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed,
                                            QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -282,47 +288,107 @@ class Passwordy(QtWidgets.QMainWindow):
         self.checks_frame.setSizePolicy(sizePolicy)
         self.checks_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.checks_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set checkboxes frame's name
         self.checks_frame.setObjectName('checks_frame')
-        self.horizontallayout_3 = QtWidgets.QHBoxLayout(self.checks_frame)
-        self.horizontallayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_3.setSpacing(0)
-        self.horizontallayout_3.setObjectName('horizontallayout_3')
+
+        # Set checkboxes frame's layout
+        self.checks_frame_layout = QtWidgets.QHBoxLayout(self.checks_frame)
+        self.checks_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.checks_frame_layout.setSpacing(0)
+
+        # Set checknoxes frame's layout's name
+        self.checks_frame_layout.setObjectName('checks_frame_layout')
+
+        # Create characters checkboxes' frame
         self.chars_frame = QtWidgets.QFrame(self.checks_frame)
         self.chars_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.chars_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Create characters checkboxes' frame's name
         self.chars_frame.setObjectName('chars_frame')
-        self.verticallayout_6 = QtWidgets.QVBoxLayout(self.chars_frame)
-        self.verticallayout_6.setContentsMargins(11, 11, 11, 11)
-        self.verticallayout_6.setSpacing(6)
-        self.verticallayout_6.setObjectName('verticallayout_6')
+
+        # Create characters checkboxes' frame's layout
+        self.chars_frame_layout = QtWidgets.QVBoxLayout(self.chars_frame)
+        self.chars_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.chars_frame_layout.setSpacing(6)
+        self.chars_frame_layout.setObjectName('chars_frame_layout')
+
+        # Create numbers checkbox
         self.nums_checkbox = QtWidgets.QCheckBox(self.chars_frame)
         self.nums_checkbox.setChecked(True)
+
+        # Set numbers' checkbox's name
         self.nums_checkbox.setObjectName('nums_checkbox')
-        self.verticallayout_6.addWidget(self.nums_checkbox)
+
+        # Add numbers checkbox to characters frame
+        self.chars_frame_layout.addWidget(self.nums_checkbox)
+
+        # Create special characters checkbox
         self.s_chars_checkbox = QtWidgets.QCheckBox(self.chars_frame)
         self.s_chars_checkbox.setChecked(True)
+
+        # Set special characters checkbox's name
         self.s_chars_checkbox.setObjectName('s_chars_checkbox')
-        self.verticallayout_6.addWidget(self.s_chars_checkbox)
-        self.horizontallayout_3.addWidget(self.chars_frame)
+
+        # Add special characters checkbox to characters frame
+        self.chars_frame_layout.addWidget(self.s_chars_checkbox)
+
+        # Add checkboxes frame to characters frame
+        self.checks_frame_layout.addWidget(self.chars_frame)
+
+        # Create case checboxes' frames
         self.case_frame = QtWidgets.QFrame(self.checks_frame)
         self.case_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.case_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set case checboxes' frame's name
         self.case_frame.setObjectName('case_frame')
-        self.verticallayout_7 = QtWidgets.QVBoxLayout(self.case_frame)
-        self.verticallayout_7.setContentsMargins(11, 11, 11, 11)
-        self.verticallayout_7.setSpacing(6)
-        self.verticallayout_7.setObjectName('verticallayout_7')
+
+        # Set case checboxes' frame's layout
+        self.case_frame_layout = QtWidgets.QVBoxLayout(self.case_frame)
+        self.case_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.case_frame_layout.setSpacing(6)
+
+        # Set case checboxes' frame's name
+        self.case_frame_layout.setObjectName('case_frame_layout')
+
+        # Create lowercase checkbox
         self.lower_checkbox = QtWidgets.QCheckBox(self.case_frame)
         self.lower_checkbox.setChecked(True)
+
+        # Set lowercase checkbox's name
         self.lower_checkbox.setObjectName('lower_checkbox')
-        self.verticallayout_7.addWidget(self.lower_checkbox)
+
+        # Add lowercase checbox to layout
+        self.case_frame_layout.addWidget(self.lower_checkbox)
+
+        # Create uppercase checkbox
         self.upper_checkbox = QtWidgets.QCheckBox(self.case_frame)
         self.upper_checkbox.setChecked(True)
+
+        # Set uppercase checkbox's name
         self.upper_checkbox.setObjectName('upper_checkbox')
-        self.verticallayout_7.addWidget(self.upper_checkbox)
-        self.horizontallayout_3.addWidget(self.case_frame)
-        self.horizontallayout_4.addWidget(self.checks_frame)
+
+        # Add uppercase checbox to case frame's layout
+        self.case_frame_layout.addWidget(self.upper_checkbox)
+
+        # Add case frame to checkboxes frame
+        self.checks_frame_layout.addWidget(self.case_frame)
+
+        # Set checkboxes labels
+        self.nums_checkbox.setText('Numbers')
+        self.s_chars_checkbox.setText('Specials')
+        self.lower_checkbox.setText('Lowercase')
+        self.upper_checkbox.setText('Uppercase')
+
+        # Add checkboxes frame to options frame
+        self.options_frame_layout.addWidget(self.checks_frame)
+
+        # Create spinboxes frame
         self.spins_frame = QtWidgets.QFrame(self.options_frame)
+
+        # Set spinboxes frame's size
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
                                            QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -330,16 +396,14 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setHeightForWidth(self.spins_frame
                                      .sizePolicy()
                                      .hasHeightForWidth())
-
-        self.nums_checkbox.setText('nums')
-        self.s_chars_checkbox.setText('Specials')
-        self.lower_checkbox.setText('lower')
-        self.upper_checkbox.setText('upper')
-
         self.spins_frame.setSizePolicy(sizePolicy)
         self.spins_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spins_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set spinboxes frame's name
         self.spins_frame.setObjectName('spins_frame')
+
+        
         self.generate_frame_layout = QtWidgets.QVBoxLayout(self.spins_frame)
         self.generate_frame_layout.setContentsMargins(0, 0, 0, 0)
         self.generate_frame_layout.setSpacing(0)
@@ -395,7 +459,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.number_of_pass.setObjectName('number_of_pass')
         self.horizontallayout_5.addWidget(self.number_of_pass)
         self.generate_frame_layout.addWidget(self.spin_boxes_frame)
-        self.horizontallayout_4.addWidget(self.spins_frame)
+        self.options_frame_layout.addWidget(self.spins_frame)
 
         self.chars_label.setText('Number of chars')
         self.pass_label.setText('Number of pass')
@@ -428,7 +492,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.close_opts_button.setSizePolicy(sizePolicy)
         self.close_opts_button.setObjectName('close_opts_button')
         self.verticallayout_4.addWidget(self.close_opts_button)
-        self.horizontallayout_4.addWidget(self.close_button_frame)
+        self.options_frame_layout.addWidget(self.close_button_frame)
         self.close_opts_button.setText('⇪')
 
         # Connect options close button to options_close function
