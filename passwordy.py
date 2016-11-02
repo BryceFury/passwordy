@@ -449,7 +449,8 @@ class Passwordy(QtWidgets.QMainWindow):
         # Set number of characters label's name
         self.chars_label.setObjectName('chars_label')
 
-        # Add number of characters label to number of characters label's frame's layout
+        # Add number of characters label to
+        # number of characters label's frame's layout
         self.clbl_frame_layout.addWidget(self.chars_label)
 
         # Add labels frame to number of characters label's frame
@@ -477,68 +478,107 @@ class Passwordy(QtWidgets.QMainWindow):
         # Set number of passwords label's name
         self.pass_label.setObjectName('pass_label')
 
-        # Add number of passwords label to number of passwords label's frame's layout
+        # Add number of passwords label to
+        # number of passwords label's frame's layout
         self.numpass_lbl_layout.addWidget(self.pass_label)
 
-        # Add number of passwords label's 
+        # Add number of passwords label's
         self.labels_frame_layout.addWidget(self.pass_label_frame)
 
         # Add labels frame to generate frame
         self.generate_frame_layout.addWidget(self.labels_frame)
 
-
+        # Create spin boxes frame
         self.spin_boxes_frame = QtWidgets.QFrame(self.spins_frame)
         self.spin_boxes_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spin_boxes_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set spin boxes' frame's name
         self.spin_boxes_frame.setObjectName('spin_boxes_frame')
-        self.horizontallayout_5 = QtWidgets.QHBoxLayout(self.spin_boxes_frame)
-        self.horizontallayout_5.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_5.setSpacing(0)
-        self.horizontallayout_5.setObjectName('horizontallayout_5')
+
+        # Set spin boxes' frame's layout
+        self.spin_frame_layout = QtWidgets.QHBoxLayout(self.spin_boxes_frame)
+        self.spin_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.spin_frame_layout.setSpacing(0)
+
+        # Set spin boxes' frame's layout's name
+        self.spin_frame_layout.setObjectName('spin_frame_layout')
+
+        # Create number of characters spinbox
         self.number_of_chars = QtWidgets.QSpinBox(self.spin_boxes_frame)
+
+        # Set number of characters spinbox's default values
         self.number_of_chars.setMinimum(1)
         self.number_of_chars.setMaximum(64)
+
+        # Set number of characters spinbox's name
         self.number_of_chars.setObjectName('number_of_chars')
-        self.horizontallayout_5.addWidget(self.number_of_chars)
+
+        # Add number of characters spinbox to number of characters frame
+        self.spin_frame_layout.addWidget(self.number_of_chars)
+
+        # Create number of passwords spinbox
         self.number_of_pass = QtWidgets.QSpinBox(self.spin_boxes_frame)
+
+        # Set number of passwords spinbox's default values
         self.number_of_pass.setMinimum(1)
+
+        # Set number of passwords spinbox's name
         self.number_of_pass.setObjectName('number_of_pass')
-        self.horizontallayout_5.addWidget(self.number_of_pass)
+
+        # Add spin boxes frame's layout to number of passwords frame
+        self.spin_frame_layout.addWidget(self.number_of_pass)
+
+        # Add spin boxes frame to generate frame's layout
         self.generate_frame_layout.addWidget(self.spin_boxes_frame)
+
+        # Add spins frame to options frame's layout
         self.options_frame_layout.addWidget(self.spins_frame)
 
+        # Set number of characters and passwords labels' text
         self.chars_label.setText('Number of chars')
         self.pass_label.setText('Number of pass')
 
-        self.close_button_frame = QtWidgets.QFrame(self.options_frame)
+        # Create close options button frame
+        self.clsbt_frame = QtWidgets.QFrame(self.options_frame)
+
+        # Set close options button's frame's size
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed,
                                            QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.close_button_frame
+        sizePolicy.setHeightForWidth(self.clsbt_frame
                                      .sizePolicy()
                                      .hasHeightForWidth())
 
-        self.close_button_frame.setSizePolicy(sizePolicy)
-        self.close_button_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.close_button_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.close_button_frame.setObjectName('close_button_frame')
-        self.verticallayout_4 = QtWidgets.QVBoxLayout(self.close_button_frame)
-        self.verticallayout_4.setContentsMargins(0, 0, 0, 0)
-        self.verticallayout_4.setSpacing(0)
-        self.verticallayout_4.setObjectName('verticallayout_4')
-        self.close_opts_button = QtWidgets.QPushButton(self.close_button_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed,
-                                           QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.close_opts_button
-                                     .sizePolicy()
-                                     .hasHeightForWidth())
-        self.close_opts_button.setSizePolicy(sizePolicy)
+        self.clsbt_frame.setSizePolicy(sizePolicy)
+        self.clsbt_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.clsbt_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set close options button's frame's name
+        self.clsbt_frame.setObjectName('clsbt_frame')
+
+        # Set close options button's frame's layout
+        self.clsbt_frame_layout = QtWidgets.QVBoxLayout(self.clsbt_frame)
+        self.clsbt_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.clsbt_frame_layout.setSpacing(0)
+
+        # Set close options button's frame's layout's name
+        self.clsbt_frame_layout.setObjectName('clsbt_frame_layout')
+
+        # Create close options button
+        self.close_opts_button = QtWidgets.QPushButton(self.clsbt_frame)
+
+        # Set close options button's name
         self.close_opts_button.setObjectName('close_opts_button')
-        self.verticallayout_4.addWidget(self.close_opts_button)
-        self.options_frame_layout.addWidget(self.close_button_frame)
+
+        # Add close options button to close options button's layout
+        self.clsbt_frame_layout.addWidget(self.close_opts_button)
+
+        # Add close options button's frame to options frame's layout
+        self.options_frame_layout.addWidget(self.clsbt_frame)
+
+        # Set close options button's text
         self.close_opts_button.setText('⇪')
 
         # Connect options close button to options_close function
