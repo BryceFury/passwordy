@@ -12,10 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 # Create main canvas
 class Passwordy(QtWidgets.QMainWindow):
- 
 
-    def __init__(self, parent = None):
-        QtWidgets.QMainWindow.__init__(self,parent)
+    def __init__(self, parent=None):
+        QtWidgets.QMainWindow.__init__(self, parent)
 
         # Call function to create UI
         self.create_main_ui()
@@ -236,14 +235,14 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticallayout_6.setContentsMargins(11, 11, 11, 11)
         self.verticallayout_6.setSpacing(6)
         self.verticallayout_6.setObjectName('verticallayout_6')
-        self.numbers_checkbox = QtWidgets.QCheckBox(self.characters_frame)
-        self.numbers_checkbox.setChecked(True)
-        self.numbers_checkbox.setObjectName('numbers_checkbox')
-        self.verticallayout_6.addWidget(self.numbers_checkbox)
-        self.special_characters_checkbox = QtWidgets.QCheckBox(self.characters_frame)
-        self.special_characters_checkbox.setChecked(True)
-        self.special_characters_checkbox.setObjectName('special_characters_checkbox')
-        self.verticallayout_6.addWidget(self.special_characters_checkbox)
+        self.nums_checkbox = QtWidgets.QCheckBox(self.characters_frame)
+        self.nums_checkbox.setChecked(True)
+        self.nums_checkbox.setObjectName('nums_checkbox')
+        self.verticallayout_6.addWidget(self.nums_checkbox)
+        self.s_chars_checkbox = QtWidgets.QCheckBox(self.characters_frame)
+        self.s_chars_checkbox.setChecked(True)
+        self.s_chars_checkbox.setObjectName('s_chars_checkbox')
+        self.verticallayout_6.addWidget(self.s_chars_checkbox)
         self.horizontallayout_3.addWidget(self.characters_frame)
         self.case_frame = QtWidgets.QFrame(self.checks_frame)
         self.case_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -253,14 +252,14 @@ class Passwordy(QtWidgets.QMainWindow):
         self.verticallayout_7.setContentsMargins(11, 11, 11, 11)
         self.verticallayout_7.setSpacing(6)
         self.verticallayout_7.setObjectName('verticallayout_7')
-        self.lowercase_checkbox = QtWidgets.QCheckBox(self.case_frame)
-        self.lowercase_checkbox.setChecked(True)
-        self.lowercase_checkbox.setObjectName('lowercase_checkbox')
-        self.verticallayout_7.addWidget(self.lowercase_checkbox)
-        self.uppercase_checkbox = QtWidgets.QCheckBox(self.case_frame)
-        self.uppercase_checkbox.setChecked(True)
-        self.uppercase_checkbox.setObjectName('uppercase_checkbox')
-        self.verticallayout_7.addWidget(self.uppercase_checkbox)
+        self.lower_checkbox = QtWidgets.QCheckBox(self.case_frame)
+        self.lower_checkbox.setChecked(True)
+        self.lower_checkbox.setObjectName('lower_checkbox')
+        self.verticallayout_7.addWidget(self.lower_checkbox)
+        self.upper_checkbox = QtWidgets.QCheckBox(self.case_frame)
+        self.upper_checkbox.setChecked(True)
+        self.upper_checkbox.setObjectName('upper_checkbox')
+        self.verticallayout_7.addWidget(self.upper_checkbox)
         self.horizontallayout_3.addWidget(self.case_frame)
         self.horizontallayout_4.addWidget(self.checks_frame)
         self.spins_frame = QtWidgets.QFrame(self.options_frame)
@@ -269,10 +268,10 @@ class Passwordy(QtWidgets.QMainWindow):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spins_frame.sizePolicy().hasHeightForWidth())
 
-        self.numbers_checkbox.setText('Numbers')
-        self.special_characters_checkbox.setText('Specials')
-        self.lowercase_checkbox.setText('Lowercase')
-        self.uppercase_checkbox.setText('Uppercase')
+        self.nums_checkbox.setText('nums')
+        self.s_chars_checkbox.setText('Specials')
+        self.lower_checkbox.setText('lower')
+        self.upper_checkbox.setText('upper')
         
         self.spins_frame.setSizePolicy(sizePolicy)
         self.spins_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -440,20 +439,14 @@ class Passwordy(QtWidgets.QMainWindow):
 
     def generate_passwords(self):
 
-        # Increase window size
-        #self.resize(500, 50)
-
         # Clear the output box
         self.password_output.setText('')
 
         # Set strings to get characters from
-        # Numbers
-        numbers = string.digits
-        # Letters
-        lowercase = string.ascii_lowercase
-        uppercase = string.ascii_uppercase
-        # Special Characters
-        special_characters = '!@#$%^&*()\{\}[]?,.'
+        nums = string.digits
+        lower = string.ascii_lower
+        upper = string.ascii_upper
+        s_chars = '!@#$%^&*()\{\}[]?,.'
 
         # Init output character string
         output_characters = ''
@@ -461,20 +454,25 @@ class Passwordy(QtWidgets.QMainWindow):
         # Init empty password list
         final_password_list = []
 
-        # Check user has used a lowercase_checkbox, add characters from strings relative to checkboxes, generate password
-        output_characters = (numbers * self.numbers_checkbox.isChecked() 
-                           + lowercase * self.lowercase_checkbox.isChecked() 
-                           + uppercase * self.uppercase_checkbox.isChecked() 
-                           + special_characters * self.special_characters_checkbox.isChecked())
-        # Check how many passwords the user requires, generate for that amount
+        # Add characters from strings relative to checkboxes
+        output_characters = (nums * self.nums_checkbox.isChecked() 
+                             + lower * self.lower_checkbox.isChecked() 
+                             + upper * self.upper_checkbox.isChecked() 
+                             + s_chars * self.s_chars_checkbox.isChecked())
+
+        # Generate for that amount in the number of passwords input
         for i in range(0, self.number_of_passwords.value()):
-            password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
+            password = ''
+
+            for i in range(self.number_of_characters.value()):
+                password += random.choice(output_characters)
+
+            # Add generated password to the password lisr
             final_password_list.append(password)
 
         # Add each password in the password list to the output box
         for i in final_password_list:
             self.password_output.append(i)
-
 
     ''' Window handling '''
 
@@ -482,27 +480,26 @@ class Passwordy(QtWidgets.QMainWindow):
     def mousePressEvent(self, event):
         self.offset = event.pos()
 
-
     def mouseMoveEvent(self, event):
-        x=event.globalX()
-        y=event.globalY()
+        x = event.globalX()
+        y = event.globalY()
         x_w = self.offset.x()
         y_w = self.offset.y()
-        self.move(x-x_w, y-y_w)
-    
- 
+        self.move(x - x_w, y - y_w)
+
+
 ''' Run '''
 
 
 def main():
- 
+
     app = QtWidgets.QApplication(sys.argv)
- 
+
     main = Passwordy()
     main.show()
- 
+
     sys.exit(app.exec_())
- 
+
 if __name__ == '__main__':
-    
+
     main()
