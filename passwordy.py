@@ -585,6 +585,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.close_opts_button.clicked.connect(self.close_menu)
 
     def open_menu(self):
+        # Check if menu is open and set size accordingly
         if not self.menu_open:
             if not self.password_output_open:
                 self.setFixedSize(500, 100)
@@ -599,7 +600,7 @@ class Passwordy(QtWidgets.QMainWindow):
         # Hide menu
         self.options_frame.hide()
 
-        # Reset window size
+        # Reset window size dependant on if password output if open
         if not self.password_output_open:
             self.resize(500, 50)
         else:
@@ -612,6 +613,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.menu_open = False
 
     def open_password_ouput(self):
+        # Check if password output is open and call functions accordingly
         if not self.password_output_open:
             self.setFixedSize(500, 200)
             self.password_ui()
@@ -630,13 +632,13 @@ class Passwordy(QtWidgets.QMainWindow):
         # Create output frame
         self.output_frame = QtWidgets.QFrame(self.centralWidget)
         self.output_frame.setObjectName('output_frame')
-        self.horizontallayout_14 = QtWidgets.QHBoxLayout(self.output_frame)
-        self.horizontallayout_14.setSizeConstraint(QtWidgets
+        self.output_frame_layout = QtWidgets.QHBoxLayout(self.output_frame)
+        self.output_frame_layout.setSizeConstraint(QtWidgets
                                                    .QLayout
                                                    .SetDefaultConstraint)
-        self.horizontallayout_14.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_14.setSpacing(0)
-        self.horizontallayout_14.setObjectName('horizontallayout_14')
+        self.output_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.output_frame_layout.setSpacing(0)
+        self.output_frame_layout.setObjectName('output_frame_layout')
 
         # Add output frame to layout
         self.main_layout.addWidget(self.output_frame)
@@ -650,7 +652,8 @@ class Passwordy(QtWidgets.QMainWindow):
                                            'background: #FFFFFF; '
                                            'border: 1px solid #272727')
 
-        self.horizontallayout_14.addWidget(self.password_output)
+        # Add password output to output frame's layout
+        self.output_frame_layout.addWidget(self.password_output)
 
     def generate_pass(self):
 
