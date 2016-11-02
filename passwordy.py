@@ -657,6 +657,15 @@ class Passwordy(QtWidgets.QMainWindow):
 
     def generate_pass(self):
 
+        # Check numbers checkbox if 
+        # user unchecks all boxes and tries to generate
+        if not True in [self.nums_checkbox.isChecked() or 
+                        self.lower_checkbox.isChecked() or
+                        self.upper_checkbox.isChecked() or
+                        self.s_chars_checkbox.isChecked()]:
+
+            self.nums_checkbox.setChecked(True)
+
         # Clear the output box
         self.password_output.setText('')
 
