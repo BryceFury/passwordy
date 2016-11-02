@@ -417,7 +417,9 @@ class Passwordy(QtWidgets.QMainWindow):
         self.output_frame = QtWidgets.QFrame(self.centralWidget)
         self.output_frame.setObjectName('output_frame')
         self.horizontallayout_14 = QtWidgets.QHBoxLayout(self.output_frame)
-        self.horizontallayout_14.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.horizontallayout_14.setSizeConstraint(QtWidgets
+                                                   .QLayout
+                                                   .SetDefaultConstraint)
         self.horizontallayout_14.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_14.setSpacing(0)
         self.horizontallayout_14.setObjectName('horizontallayout_14')
@@ -428,14 +430,13 @@ class Passwordy(QtWidgets.QMainWindow):
         # Create output box
         self.password_output = QtWidgets.QTextEdit(self.output_frame)
         self.password_output.setReadOnly(True)
-        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
+        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred,
                                            QtWidgets.QSizePolicy.Expanding)
         self.password_output.setStyleSheet('font: bold 12px;'
                                            'background: #FFFFFF; '
                                            'border: 1px solid #272727')
 
         self.horizontallayout_14.addWidget(self.password_output)
-
 
     def generate_passwords(self):
 
@@ -444,8 +445,8 @@ class Passwordy(QtWidgets.QMainWindow):
 
         # Set strings to get characters from
         nums = string.digits
-        lower = string.ascii_lower
-        upper = string.ascii_upper
+        lower = string.ascii_lowercase
+        upper = string.ascii_uppercase
         s_chars = '!@#$%^&*()\{\}[]?,.'
 
         # Init output character string
@@ -455,10 +456,10 @@ class Passwordy(QtWidgets.QMainWindow):
         final_password_list = []
 
         # Add characters from strings relative to checkboxes
-        output_characters = (nums * self.nums_checkbox.isChecked() 
-                             + lower * self.lower_checkbox.isChecked() 
-                             + upper * self.upper_checkbox.isChecked() 
-                             + s_chars * self.s_chars_checkbox.isChecked())
+        output_characters = (nums * self.nums_checkbox.isChecked() +
+                             lower * self.lower_checkbox.isChecked() +
+                             upper * self.upper_checkbox.isChecked() +
+                             s_chars * self.s_chars_checkbox.isChecked())
 
         # Generate for that amount in the number of passwords input
         for i in range(0, self.number_of_passwords.value()):
