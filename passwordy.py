@@ -403,44 +403,90 @@ class Passwordy(QtWidgets.QMainWindow):
         # Set spinboxes frame's name
         self.spins_frame.setObjectName('spins_frame')
 
-        
+        # Create generate_frame's layout
         self.generate_frame_layout = QtWidgets.QVBoxLayout(self.spins_frame)
         self.generate_frame_layout.setContentsMargins(0, 0, 0, 0)
         self.generate_frame_layout.setSpacing(0)
+
+        # Set generate_frame's name
         self.generate_frame_layout.setObjectName('generate_frame_layout')
+
+        # Create labels frame's layout
         self.labels_frame = QtWidgets.QFrame(self.spins_frame)
         self.labels_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.labels_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set labels frame's name
         self.labels_frame.setObjectName('labels_frame')
-        self.horizontallayout_6 = QtWidgets.QHBoxLayout(self.labels_frame)
-        self.horizontallayout_6.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_6.setSpacing(0)
-        self.horizontallayout_6.setObjectName('horizontallayout_6')
+
+        # Set labels layout's name
+        self.labels_frame_layout = QtWidgets.QHBoxLayout(self.labels_frame)
+        self.labels_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.labels_frame_layout.setSpacing(0)
+
+        # Set labels layout's name
+        self.labels_frame_layout.setObjectName('labels_frame_layout')
+
+        # Create number of characters label's frame
         self.chars_label_frame = QtWidgets.QFrame(self.labels_frame)
         self.chars_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.chars_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Create number of characters label's frame's name
         self.chars_label_frame.setObjectName('chars_label_frame')
-        self.verticallayout_5 = QtWidgets.QVBoxLayout(self.chars_label_frame)
-        self.verticallayout_5.setContentsMargins(0, 0, 0, 0)
-        self.verticallayout_5.setSpacing(0)
-        self.verticallayout_5.setObjectName('verticallayout_5')
+
+        # Create number of characters label's frame's layout
+        self.clbl_frame_layout = QtWidgets.QVBoxLayout(self.chars_label_frame)
+        self.clbl_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.clbl_frame_layout.setSpacing(0)
+
+        # Create number of characters label's frame's layout's name
+        self.clbl_frame_layout.setObjectName('clbl_frame_layout')
+
+        # Create number of characters label
         self.chars_label = QtWidgets.QLabel(self.chars_label_frame)
+
+        # Set number of characters label's name
         self.chars_label.setObjectName('chars_label')
-        self.verticallayout_5.addWidget(self.chars_label)
-        self.horizontallayout_6.addWidget(self.chars_label_frame)
+
+        # Add number of characters label to number of characters label's frame's layout
+        self.clbl_frame_layout.addWidget(self.chars_label)
+
+        # Add labels frame to number of characters label's frame
+        self.labels_frame_layout.addWidget(self.chars_label_frame)
+
+        # Create number of passwords label's frame
         self.pass_label_frame = QtWidgets.QFrame(self.labels_frame)
         self.pass_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.pass_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+
+        # Set number of passwords label's frame's name
         self.pass_label_frame.setObjectName('pass_label_frame')
-        self.horizontallayout_7 = QtWidgets.QHBoxLayout(self.pass_label_frame)
-        self.horizontallayout_7.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_7.setSpacing(0)
-        self.horizontallayout_7.setObjectName('horizontallayout_7')
+
+        # Set number of passwords label's frame's layout
+        self.numpass_lbl_layout = QtWidgets.QHBoxLayout(self.pass_label_frame)
+        self.numpass_lbl_layout.setContentsMargins(0, 0, 0, 0)
+        self.numpass_lbl_layout.setSpacing(0)
+
+        # Set number of passwords label's frame's layout's name
+        self.numpass_lbl_layout.setObjectName('numpass_lbl_layout')
+
+        # Create number of passwords label
         self.pass_label = QtWidgets.QLabel(self.pass_label_frame)
+
+        # Set number of passwords label's name
         self.pass_label.setObjectName('pass_label')
-        self.horizontallayout_7.addWidget(self.pass_label)
-        self.horizontallayout_6.addWidget(self.pass_label_frame)
+
+        # Add number of passwords label to number of passwords label's frame's layout
+        self.numpass_lbl_layout.addWidget(self.pass_label)
+
+        # Add number of passwords label's 
+        self.labels_frame_layout.addWidget(self.pass_label_frame)
+
+        # Add labels frame to generate frame
         self.generate_frame_layout.addWidget(self.labels_frame)
+
+
         self.spin_boxes_frame = QtWidgets.QFrame(self.spins_frame)
         self.spin_boxes_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.spin_boxes_frame.setFrameShadow(QtWidgets.QFrame.Raised)
