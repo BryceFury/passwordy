@@ -18,6 +18,8 @@ class Passwordy(QtWidgets.QMainWindow):
         # Call function to create UI
         self.main_ui()
 
+    ''' Initial window '''
+    
     def main_ui(self):
 
         # Set window stylesheet
@@ -247,6 +249,8 @@ class Passwordy(QtWidgets.QMainWindow):
             self.resize(500, 50)
         else:
             self.setFixedSize(500, 200)
+
+    ''' Option menu '''
 
     def menu_ui(self):
 
@@ -612,22 +616,12 @@ class Passwordy(QtWidgets.QMainWindow):
         # Set menu open flag
         self.menu_open = False
 
-    def open_password_ouput(self):
-        # Check if password output is open and call functions accordingly
-        if not self.password_output_open:
-            self.setFixedSize(500, 200)
-            self.password_ui()
-            self.generate_pass()
-        else:
-            self.generate_pass()
+    ''' Password output '''
 
     def password_ui(self):
 
         # Set open flag
         self.password_output_open = True
-
-        # Change menu button to 'open'
-        self.menu_button.setText('☷')
 
         # Create output frame
         self.output_frame = QtWidgets.QFrame(self.centralWidget)
@@ -655,14 +649,23 @@ class Passwordy(QtWidgets.QMainWindow):
         # Add password output to output frame's layout
         self.output_frame_layout.addWidget(self.password_output)
 
+    def open_password_ouput(self):
+        # Check if password output is open and call functions accordingly
+        if not self.password_output_open:
+            self.setFixedSize(500, 200)
+            self.password_ui()
+            self.generate_pass()
+        else:
+            self.generate_pass()    
+
     def generate_pass(self):
 
         # Check numbers checkbox if
         # user unchecks all boxes and tries to generate
-        if not in [self.nums_checkbox.isChecked() or
-                   self.lower_checkbox.isChecked() or
-                   self.upper_checkbox.isChecked() or
-                   self.s_chars_checkbox.isChecked()]:
+        if not True in [self.nums_checkbox.isChecked() or
+                        self.lower_checkbox.isChecked() or
+                        self.upper_checkbox.isChecked() or
+                        self.s_chars_checkbox.isChecked()]:
 
             self.nums_checkbox.setChecked(True)
 
