@@ -19,7 +19,7 @@ class Passwordy(QtWidgets.QMainWindow):
         self.main_ui()
 
     ''' Initial window '''
-    
+
     def main_ui(self):
 
         # Set window stylesheet
@@ -250,7 +250,7 @@ class Passwordy(QtWidgets.QMainWindow):
         else:
             self.setFixedSize(500, 200)
 
-    ''' Option menu '''
+    ''' Options menu '''
 
     def menu_ui(self):
 
