@@ -600,10 +600,10 @@ class Passwordy(QtWidgets.QMainWindow):
         # Hide menu
         self.options_frame.hide()
 
-        # Reset window size dependant on if password output if open
+        # Reset window size dependant on if password output or menu is open
         if not self.password_output_open:
-            self.resize(500, 50)
-        else:
+            self.setFixedSize(500, 50)
+        elif self.menu_open:
             self.setFixedSize(500, 200)
 
         # Reset menu button icon
@@ -657,9 +657,9 @@ class Passwordy(QtWidgets.QMainWindow):
 
     def generate_pass(self):
 
-        # Check numbers checkbox if 
+        # Check numbers checkbox if
         # user unchecks all boxes and tries to generate
-        if not True in [self.nums_checkbox.isChecked() or 
+        if not in [self.nums_checkbox.isChecked() or
                         self.lower_checkbox.isChecked() or
                         self.upper_checkbox.isChecked() or
                         self.s_chars_checkbox.isChecked()]:
