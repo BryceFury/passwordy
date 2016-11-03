@@ -16,9 +16,9 @@ class Passwordy(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self, parent)
 
         # Call function to create UI
-        self.create_main_ui()
+        self.main_ui()
 
-    def create_main_ui(self):
+    def main_ui(self):
 
         # Set window stylesheet
         get_stylesheet = set_stylesheet()
