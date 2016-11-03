@@ -660,9 +660,9 @@ class Passwordy(QtWidgets.QMainWindow):
         # Check numbers checkbox if
         # user unchecks all boxes and tries to generate
         if not in [self.nums_checkbox.isChecked() or
-                        self.lower_checkbox.isChecked() or
-                        self.upper_checkbox.isChecked() or
-                        self.s_chars_checkbox.isChecked()]:
+                   self.lower_checkbox.isChecked() or
+                   self.upper_checkbox.isChecked() or
+                   self.s_chars_checkbox.isChecked()]:
 
             self.nums_checkbox.setChecked(True)
 
