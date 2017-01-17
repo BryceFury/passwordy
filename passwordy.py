@@ -656,7 +656,7 @@ class Passwordy(QtWidgets.QMainWindow):
             self.password_ui()
             self.generate_pass()
         else:
-            self.generate_pass() 
+            self.generate_pass()
 
     def generate_pass(self):
 
