@@ -6,7 +6,7 @@ import sys
 
 from stylesheet import set_stylesheet
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 # Create main canvas
