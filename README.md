@@ -16,7 +16,9 @@ Get PyQT5:
 
     pip install pyqt5
 
-Download the repo.
+Download the repo:
+
+	git clone https://github.com/BryceFury/passwordy.git
 
 ## Usage
 
